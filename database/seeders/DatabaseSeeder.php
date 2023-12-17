@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             // Seeder for Users
             UserSeeder::class,
+            // Seeder for SU
+            SuperAdminSeeder::class,
         ]);
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\User\MessagesController;
 use App\Http\Controllers\Api\Teams\MessagesController as TeamsMessagesController;
 use App\Http\Controllers\Api\User\NotificationsController;
 use App\Http\Middleware\CheckStatus;
+use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +38,8 @@ Route::prefix('/auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::prefix('/admin')->group(function () {
-    Route::group(['middleware' => ['auth:api']], function () {
+Route::prefix('/admin/{user_id}')->group(function () {
+    Route::group(['middleware' => ['auth:api', SuperAdminMiddleware::class]], function () {
         Route::get('/approves', [ApproveController::class, 'index'])->name('approve.index');
         Route::post('/approve-account', [ApproveController::class, 'approve'])->name('approve.approve');
         Route::post('/disapprove', [ApproveController::class, 'disapprove'])->name('disapprove');
