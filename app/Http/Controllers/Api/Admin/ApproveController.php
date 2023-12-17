@@ -18,7 +18,7 @@ class ApproveController extends BaseApiController
         $this->pendigApproveService = $pendigApproveService;
     }
 
-    public function index()
+    public function index($user_id)
     {
         try {
             $allPendingApproves = $this->pendigApproveService->getAll();
@@ -28,7 +28,7 @@ class ApproveController extends BaseApiController
         }
     }
 
-    public function approve(ApproveRequest $request)
+    public function approve($user_id, ApproveRequest $request)
     {
         try {
             $this->pendigApproveService->approve($request->user_id);
@@ -38,7 +38,7 @@ class ApproveController extends BaseApiController
         }
     }
 
-    public function disapprove(Request $request)
+    public function disapprove($user_id, Request $request)
     {
         try {
             $this->pendigApproveService->disapprove($request->user_id);

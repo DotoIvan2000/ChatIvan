@@ -17,7 +17,7 @@ class UserController extends BaseApiController
     {
         $this->usersService = $usersService;
     }
-    public function index()
+    public function index($user_id)
     {
         try {
             $users = $this->usersService->getUsers();
@@ -27,7 +27,7 @@ class UserController extends BaseApiController
         }
     }
 
-    public function deleteuser($id)
+    public function deleteuser($user_id, $id)
     {
         try {
             $user = $this->usersService->deleteUser($id);

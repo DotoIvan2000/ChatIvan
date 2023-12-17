@@ -16,13 +16,13 @@ class TeamController extends BaseApiController
     {
         $this->teamService = $teamService;
     }
-    public function index()
+    public function index($user_id)
     {
         $teams = $this->teamService->getTeams();
         return $this->returnInfoSuccess($teams, null, 200);
     }
 
-    public function deleteteam($id)
+    public function deleteteam($user_id, $id)
     {
         try {
             $team = $this->teamService->deleteTeam($id);

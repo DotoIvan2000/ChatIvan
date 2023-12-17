@@ -48,8 +48,8 @@ Route::prefix('/admin/{user_id}')->group(function () {
         Route::delete('/deleteteam/{id}', [TeamController::class, 'deleteteam'])->name('deleteteam');
         Route::delete('/deleteuser/{id}', [UserController::class, 'deleteuser'])->name('deleteuser');
         Route::prefix('/export')->group(function () {
-            Route::get('/users/{user_id}', [ExportController::class, 'exportUsers'])->name('export.users');
-            Route::get('/teams/{user_id}', [ExportController::class, 'exportTeams'])->name('export.teams');
+            Route::get('/users', [ExportController::class, 'exportUsers'])->name('export.users');
+            Route::get('/teams', [ExportController::class, 'exportTeams'])->name('export.teams');
         });
     });
 });
