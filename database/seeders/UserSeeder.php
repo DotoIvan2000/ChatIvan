@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         try {
             DB::beginTransaction();
             $typeNormal = Type::whereStr('normal-account')->first()->id;
+            $typePremium = Type::whereStr('premium-account')->first()->id;
             $user = User::firstOrCreate([
                 'first_name' => 'Ivan de Jesus',
                 'last_name' => 'Gonzalez Garcia',
@@ -30,7 +31,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'profile_photo_path' => null,
                 'remember_token' => null,
-                'type_id' => $typeNormal,
+                'type_id' => $typePremium,
             ]);
             PendingApprove::create([
                 'user_id' => $user->id
