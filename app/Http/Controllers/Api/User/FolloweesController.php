@@ -46,4 +46,15 @@ class FolloweesController extends BaseApiController
             return $this->returnInfoError($exception->getMessage(), 500);
         }
     }
+
+    public function searchUsers($user_id, Request $request)
+    {
+        $filter = $request->filter;
+        try {
+            $users = $this->followersService->searchUsers($filter, $user_id);
+            return $this->returnInfoSuccess($users, null, 200);
+        } catch (Exception $exception) {
+            return $this->returnInfoError($exception->getMessage(), 500);
+        }
+    }
 }

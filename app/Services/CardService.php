@@ -25,6 +25,7 @@ class CardService
     {
         try {
             DB::beginTransaction();
+            $data['user_id'] = $user_id;
             $card = $this->cardRepository->create($data);
             PendingApprove::create([
                 'user_id' => $user_id,

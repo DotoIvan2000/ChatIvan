@@ -84,4 +84,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Follower::class, 'follower_id', 'id');
     }
+
+    public function scopeFilterUsers($query, $filter)
+    {
+        return $query->where(function ($query) use ($filter) {
+            $query->where('email', 'LIKE', '%'.$filter.'%')
+                ->orWhere('username', 'LIKE', '%'.$filter.'%')
+                ->orWhere('first_name', 'LIKE', '%'.$filter.'%')
+                ->orWhere('last_name', 'LIKE', '%'.$filter.'%');
+        });
+    }
 }

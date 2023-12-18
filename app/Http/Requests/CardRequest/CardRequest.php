@@ -22,7 +22,7 @@ class CardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type_id' => 'required|string',
+            'type_id' => 'required|int',
             'card_number' => 'required|string|size:16',
             'date' => 'required|string',
             'cvv' => 'required|string|size:3',

@@ -21,6 +21,9 @@ class CheckStatus
         if ($user && $user->hasRole('admin')) {
             return $next($request);
         }
+        if ($user && $user->hasRole('super-admin-role')) {
+            return $next($request);
+        }
         return response()->json([
             'data' => null,
             'message' => 'No tienes permiso para realizar esta acción',

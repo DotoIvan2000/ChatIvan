@@ -68,4 +68,13 @@ class FollowersRepository extends BaseRepository
             throw new Exception($exception->getMessage());
         }
     }
+    public function searchUsers($filter, $user_id)
+    {
+        try {
+            $users = User::filterUsers($filter)->where('id', '!=', $user_id)->get();
+            return $users;
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
 }

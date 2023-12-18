@@ -55,4 +55,13 @@ class FollowersService
             throw new Exception($exception->getMessage());
         }
     }
+    public function searchUsers($filter ,$user_id)
+    {
+        try {
+            $users = $this->followersRepository->searchUsers($filter, $user_id);
+            return $users;
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }   
+    }
 }

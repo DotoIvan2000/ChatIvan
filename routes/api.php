@@ -59,6 +59,7 @@ Route::prefix('/user/{user_id}')->group(function () {
         Route::get('/notifications', [NotificationsController::class, 'notifications'])->name('notifications');
         Route::get('/followers', [FollowersController::class, 'followers'])->name('followers');
         Route::get('/following', [FolloweesController::class, 'following'])->name('following');
+        Route::post('/search-users', [FolloweesController::class, 'searchUsers'])->name('searchUsers');
         Route::get('/messages/{user_2_id}', [MessagesController::class, 'messages'])->name('messages');
         Route::post('/send-message-normal', [MessagesController::class, 'sendMessage'])->name('send.message');
         Route::post('/follow', [FolloweesController::class, 'follow'])->name('follow');
