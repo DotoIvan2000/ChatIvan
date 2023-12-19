@@ -48,7 +48,7 @@ class TeamsRepository extends BaseRepository
         try {
             $teams = $this->model->join('team_user', 'teams.id', '=', 'team_user.team_id')
                 ->where('team_user.user_id', $user_id)
-                ->select('teams.id', 'teams.name', 'teams.description', 'teams.str', 'teams.created_at', 'teams.updated_at')
+                ->select('teams.id', 'teams.name', 'teams.description', 'teams.str','teams.logo', 'teams.created_at', 'teams.updated_at')
                 ->get();
             return $teams;
         } catch (Exception $exception) {
