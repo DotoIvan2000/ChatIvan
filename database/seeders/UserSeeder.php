@@ -33,9 +33,7 @@ class UserSeeder extends Seeder
                 'remember_token' => null,
                 'type_id' => $typePremium,
             ]);
-            PendingApprove::create([
-                'user_id' => $user->id
-            ]);
+
             User::firstOrCreate([
                 'first_name' => 'Daniel',
                 'last_name' => 'Rivera',
