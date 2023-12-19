@@ -70,11 +70,12 @@ Route::prefix('/user/{user_id}')->group(function () {
 
 Route::prefix('/team/{user_id}')->group(function () {
     Route::group(['middleware' => ['auth:api', CheckStatus::class]], function () {
-        Route::get('/teams', [TeamsTeamController::class, 'index'])->name('teams.index');
+        Route::get('/teams-mine', [TeamsTeamController::class, 'index'])->name('teams.index');
+        Route::get('/messages-team/{team_id}', [TeamsTeamController::class, 'allMessages'])->name('messagesTeam');
         Route::post('/create', [TeamsTeamController::class, 'create'])->name('team.create');
         Route::put('/update/{team_id}', [TeamsTeamController::class, 'update'])->name('team.update');
         Route::post('/join', [TeamsTeamController::class, 'joinTeam'])->name('team.join');
         Route::post('/leave', [TeamsTeamController::class, 'leaveTeam'])->name('team.leave');
-        Route::post('/send-message-team', [TeamsMessagesController::class, 'sendMessage'])->name('send.message');
+        Route::post('/send-message-team/{team_id}', [TeamsMessagesController::class, 'sendMessage'])->name('send.message');
     });
 });

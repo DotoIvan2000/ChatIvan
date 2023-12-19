@@ -22,7 +22,7 @@ class TeamController extends BaseApiController
     public function index($user_id)
     {
         try {
-            $teams = $this->teamsService->getTeamsByUser($user_id);
+            $teams = $this->teamsService->getByUser($user_id);
             return $this->returnInfoSuccess($teams);
         } catch (\Exception $e) {
             return $this->returnInfoError($e->getMessage(), 500);
@@ -65,6 +65,16 @@ class TeamController extends BaseApiController
         try {
             $team = $this->teamsService->leaveTeam($user_id, $request->all());
             return $this->returnInfoSuccess($team);
+        } catch (\Exception $e) {
+            return $this->returnInfoError($e->getMessage(), 500);
+        }
+    }
+
+    public function allMessages($user_id, $team_id)
+    {
+        try {
+            $messages = $this->teamsService->getAllMessages($team_id);
+            return $this->returnInfoSuccess($messages);
         } catch (\Exception $e) {
             return $this->returnInfoError($e->getMessage(), 500);
         }

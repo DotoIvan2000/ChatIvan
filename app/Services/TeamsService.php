@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class TeamsService.
@@ -45,6 +46,7 @@ class TeamsService
 
     public function deleteTeam($team_id)
     {
+        Log::info($team_id);
         try {
             $team = $this->teamsRepository->deleteTeam($team_id);
             return $team;
@@ -53,7 +55,7 @@ class TeamsService
         }
     }
 
-    public function getTeamsByUser($user_id)
+    public function getByUser($user_id)
     {
         try {
             $teams = $this->teamsRepository->getTeamsByUser($user_id);
@@ -103,6 +105,17 @@ class TeamsService
             $team = $this->teamsRepository->findTeam($data['team_id']);
             $team->users()->detach($user_id);
             return $team;
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
+
+    public function getAllMessages($team_id)
+    {
+        Log::info($team_id);
+        try {
+            $messages = $this->teamsRepository->getMessages($team_id);
+            return $messages;
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }
